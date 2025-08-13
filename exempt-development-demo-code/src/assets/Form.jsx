@@ -5,19 +5,15 @@ function Form() {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (shedHeight > 3) {
-            document.getElementById("frmDetails").style.display = "none";
-            document.getElementById("result").innerHTML = 
-                "<h2>Warning!</h2>" +
-                "<p>Your structure is not eligible to be an exempt development. Seek planning approval.</p>";
-            
-            document.getElementById("clauseHeader").innerHTML = "Non-compliance with the following SEPP (2008) clauses:";
-            document.getElementById("clauseList").innerHTML =
-                "<li><a href=https://legislation.nsw.gov.au/view/html/inforce/current/epi-2008-0572#pt.2-div.1-sdiv.9:~:text=(c)%C2%A0%C2%A0be%20not%20higher%20than%203m%20above%20ground%20level%20(existing)%2C%20and>Subdivion 9, Clause 2.18(c)</a></li>";
 
-            document.getElementById("result").classList.add("fail");
-            document.getElementById("result").style.display = "flex";
-        } else {
+        let exemptDevelopment = false;
+
+        if (shedHeight <= 3) {
+            exemptDevelopment = true;
+        }
+
+        if (exemptDevelopment) {
+
             document.getElementById("frmDetails").style.display = "none";
             document.getElementById("result").innerHTML =
                 "<h2>Success!</h2>" +
@@ -28,6 +24,20 @@ function Form() {
                 "<li><a href=https://legislation.nsw.gov.au/view/html/inforce/current/epi-2008-0572#pt.2-div.1-sdiv.9:~:text=(c)%C2%A0%C2%A0be%20not%20higher%20than%203m%20above%20ground%20level%20(existing)%2C%20and>Subdivion 9, Clause 2.18(c)</a></li>";
             
             document.getElementById("result").classList.add("success");
+            document.getElementById("result").style.display = "flex";
+
+        } else {
+
+            document.getElementById("frmDetails").style.display = "none";
+            document.getElementById("result").innerHTML = 
+                "<h2>Warning!</h2>" +
+                "<p>Your structure is not eligible to be an exempt development. Seek planning approval.</p>";
+            
+            document.getElementById("clauseHeader").innerHTML = "Non-compliance with the following SEPP (2008) clauses:";
+            document.getElementById("clauseList").innerHTML =
+                "<li><a href=https://legislation.nsw.gov.au/view/html/inforce/current/epi-2008-0572#pt.2-div.1-sdiv.9:~:text=(c)%C2%A0%C2%A0be%20not%20higher%20than%203m%20above%20ground%20level%20(existing)%2C%20and>Subdivion 9, Clause 2.18(c)</a></li>";
+
+            document.getElementById("result").classList.add("fail");
             document.getElementById("result").style.display = "flex";
         }
     }
